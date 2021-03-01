@@ -1,0 +1,26 @@
+﻿AWSTemplateFormatVersion: "2010-09-09"
+Description: EC2 template
+Resources:
+  EC2Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      # ベースとなるAMIのIDを指定(Windows Server 2019 Japanese)
+      ImageId: "ami-027a63125bb60c403"
+      # インスタンスタイプを指定
+      InstanceType: t2.micro
+      # 作成するサブネットを指定
+      SubnetId: "subnet-XXXXXXXXXX"
+      # keypair指定
+      KeyName: "test-key"
+      # タグ指定
+      Tags:
+        - Key: 'Name'
+          Value: 'TEST-SERVER'
+      # Cドライブに設定するEBSを設定する
+      BlockDeviceMappings:
+        -
+          DeviceName: /dev/sda1
+          Ebs:
+            VolumeType: gp2
+            DeleteOnTermination: true
+            VolumeSize: 30
