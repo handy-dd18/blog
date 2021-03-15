@@ -1,0 +1,16 @@
+﻿AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Create SecurityGroup
+
+Resources:
+  TestSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: test-sg-01
+      GroupName: test-sg-01
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 10.0.0.0/8
+      VpcId: vpc-0000000000000000
